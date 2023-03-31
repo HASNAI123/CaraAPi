@@ -20,6 +20,11 @@ Route::prefix('v1')->group(function () {
 
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
 
+Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
+
+
+
+
 
 
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
