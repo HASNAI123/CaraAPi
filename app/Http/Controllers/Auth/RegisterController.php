@@ -63,7 +63,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'user_id' => 'required|unique:users,user_id',
             'password' => 'required',
             'roles' => 'array'
         ]);
@@ -74,7 +74,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'user_id' => $request->input('user_id'),
             'password' => Hash::make($request->input('password')),
             'business_unit' => $request->input('business_unit'),
         ]);
@@ -87,7 +87,7 @@ class RegisterController extends Controller
 
         return response()->json([
             'name' => $user->name,
-            'email' => $user->email,
+            'user_id' => $user->user_id,
             'roles' => $user->getRoleNames()
         ], 201);
     }

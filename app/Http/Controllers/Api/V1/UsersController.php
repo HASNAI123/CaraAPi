@@ -30,13 +30,13 @@ public function register(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|string|max:255|unique:users',
+        'user_id' => 'required|string|unique:users',
         'password' => 'required|string|min:8|confirmed',
     ]);
 
     $user = User::create([
         'name' => $request->name,
-        'email' => $request->email,
+        'email' => $request->user_id,
         'password' => bcrypt($request->password),
     ]);
 
@@ -50,7 +50,7 @@ public function register(Request $request)
 }
 public function login(Request $request)
 {
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only('user_id', 'password');
 
     if (Auth::attempt($credentials)) {
         $token = Auth::user()->createToken('API Token')->plainTextToken;

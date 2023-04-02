@@ -22,26 +22,26 @@ class LoginController extends Controller
     |
     */
     public function login(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer',
+            'password' => 'required',
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json(['error' => 'Invalid credentials'], 401);
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        $credentials = $request->only('user_id', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+            return response()->json(['access_token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
     }
-
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials)) {
-        $user = Auth::user();
-        $token = $user->createToken('authToken')->plainTextToken;
-        return response()->json(['access_token' => $token], 200);
-    } else {
-        return response()->json(['error' => 'Invalid credentials'], 401);
-    }
-}
 
     /**
      * Log the user out (Invalidate the token).
