@@ -29,6 +29,9 @@ Route::post('/generatesops', [\App\Http\Controllers\Api\V1\GeneratesopController
 Route::put('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'update']);
 Route::delete('/generatesops/{id}', [App\Http\Controllers\Api\GeneratesopController::class, 'destroy']);
 
+//Get users by role
+Route::get('users/role/{role}', [\App\Http\Controllers\Api\V1\UsersController::class, 'getUsersByRole']);
+
 
 
 Route::get('archivefolders', '\App\Http\Controllers\Api\V1\folder_archiveController@index');

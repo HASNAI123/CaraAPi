@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -19,6 +20,13 @@ class UsersController extends Controller
 
         return response()->json($users);
     }
+
+    public function getUsersByRole($roleName)
+    {
+        $users = User::role($roleName)->get();
+        return response()->json($users);
+    }
+
 
     /**
  * Register a new user.
