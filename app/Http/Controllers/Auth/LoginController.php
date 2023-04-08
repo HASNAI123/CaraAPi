@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\PersonalAccessToken;
+
 
 class LoginController extends Controller
 {
@@ -21,6 +23,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    use AuthenticatesUsers;
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -39,6 +43,15 @@ class LoginController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
             $name = $user->name;
             $role = $user->role;
+
+            // Save the token in the database
+            PersonalAccessToken::findToken($token)->forceFill([
+                'name' => 'authToken',
+                'tokenable_id' => $user->id,
+                'tokenable_type' => get_class($user),
+                'abilities' => ['*'],
+            ])->save();
+
             return response()->json(['name' => $name, 'role' => $role, 'access_token' => $token], 200);
         } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
@@ -53,7 +66,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Successfully logged out'], 200);
     }
 
@@ -68,7 +81,11 @@ class LoginController extends Controller
         return response()->json(['token' => $token], 200);
     }
 
-
+    public function getOnlineUsersCount()
+    {
+        $onlineUsersCount = PersonalAccessToken::where('last_used_at', '>', now()->subMinutes(5))->count();
+        return $onlineUsersCount;
+    }
     /**
      * Where to redirect users after login.
      *

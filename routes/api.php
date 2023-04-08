@@ -28,6 +28,8 @@ Route::get('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopContro
 Route::post('/generatesops', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'store']);
 Route::put('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'update']);
 Route::delete('/generatesops/{id}', [App\Http\Controllers\Api\GeneratesopController::class, 'destroy']);
+Route::post('/generatesops/upload', [App\Http\Controllers\Api\v1\GeneratesopController::class, 'upload']);
+
 
 //Get users by role
 Route::get('users/role/{role}', [\App\Http\Controllers\Api\V1\UsersController::class, 'getUsersByRole']);
@@ -62,6 +64,8 @@ Route::prefix('v1')->group(function () {
 
 
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
+Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUsersCount');
+
 
 Route::post('/api/v1/roles/{role_id}/permissions', [\App\Http\Controllers\Api\v1\PermissionController::class, 'addPermissionsToRole']);
 
