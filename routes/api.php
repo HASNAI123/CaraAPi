@@ -43,6 +43,16 @@ Route::get('api/archivefolders/{id}/check', '\App\Http\Controllers\Api\V1\folder
 Route::get('api/archivefolders/{id}/showfolder', '\App\Http\Controllers\Api\V1\folder_archiveController@showfolder');
 
 
+Route::prefix('v1')->group(function () {
+    Route::get('folders', '\App\Http\Controllers\Api\V1\folder_libraryController@index');
+    Route::get('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@show');
+    Route::post('folders', '\App\Http\Controllers\Api\V1\folder_libraryController@store');
+    Route::put('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@update');
+    Route::delete('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@destroy');
+    Route::delete('folders/mass-delete', '\App\Http\Controllers\Api\V1\folder_libraryController@massDestroy');
+    Route::put('folders/{id}/restore', '\App\Http\Controllers\Api\V1\folder_libraryController@restore');
+    Route::delete('folders/{id}/perma-del', '\App\Http\Controllers\Api\V1\folder_libraryController@perma_del');
+});
 
 
 
