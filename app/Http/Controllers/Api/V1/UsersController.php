@@ -85,6 +85,13 @@ public function login(Request $request)
         return response()->json($user);
     }
 
+    public function getUserByUserId($userId)
+{
+    $user = User::where('user_id', $userId)->first();
+    return response()->json($user);
+}
+
+
     /**
      * Remove the specified resource from storage.
      *

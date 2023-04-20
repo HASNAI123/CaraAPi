@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\UsersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,9 @@ Route::prefix('v1')->group(function () {
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
 
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
+Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getUserByUserId');
+
+
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
 Route::get('/generatesops', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'index']);
