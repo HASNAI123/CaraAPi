@@ -92,4 +92,25 @@ class RegisterController extends Controller
         ], 201);
     }
 
+     public function user_update(Request $request)
+    {
+
+        $user = User::where('user_id',$request->user_id)->update([
+            'name' => $request->input('name'),
+            'user_id' => $request->input('user_id'),
+            'password' => Hash::make($request->input('password')),
+            'business_unit' => $request->input('business_unit'),
+            'role' => $request->input('roles')
+        ]);
+
+        $data = User::where('user_id',$request->input('user_id'))->get();
+
+        return response()->json([
+            'msg' => 'Successfully Updated',
+            'data' => $data
+        ], 201);
+
+    }
+
+
 }
