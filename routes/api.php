@@ -18,6 +18,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('users', 'App\Http\Controllers\Api\V1\UsersController');
 });
 
+//rando
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
 
 Route::put('user_update', 'App\Http\Controllers\Auth\RegisterController@user_update');
