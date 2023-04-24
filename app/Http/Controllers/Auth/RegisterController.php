@@ -94,13 +94,21 @@ class RegisterController extends Controller
 
      public function user_update(Request $request)
     {
+         $roles = array();
+
+        if ($request->has('roles')) {
+            foreach ($request->input('roles') as $role) {
+
+                $roles[] = $role;
+            }
+        }
 
         $user = User::where('user_id',$request->user_id)->update([
             'name' => $request->input('name'),
             'user_id' => $request->input('user_id'),
             'password' => Hash::make($request->input('password')),
             'business_unit' => $request->input('business_unit'),
-            'role' => $request->input('roles')
+            'role' => $roles
         ]);
 
         $data = User::where('user_id',$request->input('user_id'))->get();
