@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'last_login_at',
         'business_unit',
+        'role'
     ];
 
     /**
@@ -67,6 +68,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->id;
     }
+
+    public function getRoleAttribute()
+{
+    return $this->attributes['role'];
+}
 
     /**
      * Get the user's name.

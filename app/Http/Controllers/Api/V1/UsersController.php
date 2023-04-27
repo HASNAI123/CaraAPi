@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function getUsersByRole($roleName)
     {
-        $users = User::role($roleName)->get();
+        $users = User::where('role', $roleName)->get();
         return response()->json($users);
     }
 
