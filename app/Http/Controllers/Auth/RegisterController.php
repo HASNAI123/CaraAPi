@@ -92,15 +92,12 @@ class RegisterController extends Controller
         ], 201);
     }
 
-     public function user_update(Request $request)
+    public function user_update(Request $request)
     {
-         $roles = array();
+        $roles = array();
 
         if ($request->has('roles')) {
-            foreach ($request->input('roles') as $role) {
-
-                $roles[] = $role;
-            }
+            $roles[] = $request->input('roles');
         }
 
         $user = User::where('user_id',$request->user_id)->update([
@@ -117,7 +114,6 @@ class RegisterController extends Controller
             'msg' => 'Successfully Updated',
             'data' => $data
         ], 201);
-
     }
 
 
