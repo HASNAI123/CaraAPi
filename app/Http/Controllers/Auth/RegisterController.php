@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'name' => 'required',
             'user_id' => 'required|unique:users,user_id',
             'password' => 'required',
-            'roles' => 'array'
+            'roles' => 'string'
         ]);
 
         if ($validator->fails()) {
@@ -80,9 +80,7 @@ class RegisterController extends Controller
         ]);
 
         if ($request->has('roles')) {
-            foreach ($request->input('roles') as $role) {
-                $user->assignRole($role);
-            }
+            $user->assignRole($request->input('roles'));
         }
 
         return response()->json([
@@ -91,6 +89,7 @@ class RegisterController extends Controller
             'roles' => $user->getRoleNames()
         ], 201);
     }
+
 
     public function user_update(Request $request)
 {
