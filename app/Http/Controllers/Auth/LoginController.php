@@ -43,6 +43,7 @@ class LoginController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
             $name = $user->name;
             $role = $user->role;
+            $userId = $user->user_id; // Retrieve the user_id
 
             // Save the token in the database
             PersonalAccessToken::findToken($token)->forceFill([
@@ -52,11 +53,17 @@ class LoginController extends Controller
                 'abilities' => ['*'],
             ])->save();
 
-            return response()->json(['name' => $name, 'role' => $role, 'access_token' => $token], 200);
+            return response()->json([
+                'user_id' => $userId,
+                'name' => $name,
+                'role' => $role,
+                'access_token' => $token
+            ], 200);
         } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
     }
+
 
     /**
      * Log the user out (Invalidate the token).
