@@ -37,6 +37,12 @@ Route::put('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopContro
 Route::delete('/generatesops/{id}', [App\Http\Controllers\Api\GeneratesopController::class, 'destroy']);
 Route::post('/generatesops/upload', [App\Http\Controllers\Api\v1\GeneratesopController::class, 'upload']);
 
+//Sop upload api
+Route::prefix('v1')->group(function () {
+    Route::post('sops', '\App\Http\Controllers\Api\V1\Sop_upload@store')->name('sops.store');
+});
+
+
 
 //Get users by role
 Route::get('users/role/{role}', [\App\Http\Controllers\Api\V1\UsersController::class, 'getUsersByRole']);
