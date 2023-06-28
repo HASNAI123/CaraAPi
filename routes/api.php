@@ -85,7 +85,7 @@ Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUs
 
 Route::post('/api/v1/roles/{role_id}/permissions', [\App\Http\Controllers\Api\v1\PermissionController::class, 'addPermissionsToRole']);
 
-
+//Get Sop
 Route::get('sops', '\App\Http\Controllers\Api\V1\SopController@getSop');
 
 Route::get('Generated_sops', '\App\Http\Controllers\Api\V1\SopController@getAllGeneratedSops');
