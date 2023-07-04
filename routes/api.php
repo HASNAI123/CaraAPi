@@ -77,7 +77,7 @@ Route::get('total_generatesops', '\App\Http\Controllers\Api\V1\HomeController@to
 
 
 
-
+//Login APi
 
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUsersCount');
