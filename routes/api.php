@@ -69,7 +69,7 @@ Route::prefix('v1')->group(function () {
     Route::delete('folders/{id}/perma-del', '\App\Http\Controllers\Api\V1\folder_libraryController@perma_del');
 });
 
-//Count Number of Users 78
+//Count Number of Users 7867
 Route::get('total_users', '\App\Http\Controllers\Api\V1\HomeController@total_users');
 
 //Count Number of Users
