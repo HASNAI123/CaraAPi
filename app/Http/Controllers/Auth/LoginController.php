@@ -24,7 +24,6 @@ class LoginController extends Controller
     |
     */
     use AuthenticatesUsers;
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -44,6 +43,7 @@ class LoginController extends Controller
             $name = $user->name;
             $role = $user->role;
             $userId = $user->user_id; // Retrieve the user_id
+            $id = $user->id; // Retrieve the id
 
             // Save the token in the database
             PersonalAccessToken::findToken($token)->forceFill([
@@ -54,6 +54,7 @@ class LoginController extends Controller
             ])->save();
 
             return response()->json([
+                'id' => $id,
                 'user_id' => $userId,
                 'name' => $name,
                 'role' => $role,
@@ -63,7 +64,6 @@ class LoginController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
     }
-
 
     /**
      * Log the user out (Invalidate the token).
