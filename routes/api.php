@@ -75,7 +75,7 @@ Route::get('total_users', '\App\Http\Controllers\Api\V1\HomeController@total_use
 //Count Number of Users
 Route::get('total_generatesops', '\App\Http\Controllers\Api\V1\HomeController@total_generatesops');
 
-
+Route::get('/logs', '\App\Http\Controllers\Api\V1\LogController@index');
 
 //Login APi routes
 
