@@ -50,7 +50,7 @@ Route::get('users/role/{role}', [\App\Http\Controllers\Api\V1\UsersController::c
 
 
 Route::get('archivefolders', '\App\Http\Controllers\Api\V1\folder_archiveController@index');
-Route::post('archivefolders', '\App\Http\Controllers\Api\V1\folder_archiveController@store');
+Route::post('createarchivefolder', '\App\Http\Controllers\Api\V1\folder_archiveController@store');
 Route::get('archivefolders/{id}', '\App\Http\Controllers\Api\V1\folder_archiveController@show');
 Route::put('api/archivefolders/{id}', '\App\Http\Controllers\Api\V1\folder_archiveController@update');
 Route::delete('api/archivefolders/{id}', '\App\Http\Controllers\Api\V1\folder_archiveController@destroy');
@@ -61,7 +61,7 @@ Route::get('api/archivefolders/{id}/showfolder', '\App\Http\Controllers\Api\V1\f
 Route::prefix('v1')->group(function () {
     Route::get('folders', '\App\Http\Controllers\Api\V1\folder_libraryController@index');
     Route::get('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@show');
-    Route::post('folders', '\App\Http\Controllers\Api\V1\folder_libraryController@store');
+    Route::post('createfolder', '\App\Http\Controllers\Api\V1\folder_libraryController@store');
     Route::put('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@update');
     Route::delete('folders/{id}', '\App\Http\Controllers\Api\V1\folder_libraryController@destroy');
     Route::delete('folders/mass-delete', '\App\Http\Controllers\Api\V1\folder_libraryController@massDestroy');

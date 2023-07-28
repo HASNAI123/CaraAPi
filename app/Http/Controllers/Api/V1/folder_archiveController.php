@@ -54,17 +54,17 @@ class folder_archiveController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->input('title');
-        $password = $request->input('password');
-        $user = Auth::user()->name;
+        $title = $request->title;
+        $password = $request->password;
+        $created_by = $request->created_by;
 
-        $archive_folder = Archive_Folder::create([
+        $folder = folder_archive::create([
             'title' => $title,
             'password' => $password,
-            'created_by' => $user,
+            'created_by' => $created_by,
         ]);
 
-        return response()->json(['archive_folder' => $archive_folder], 201);
+        return response()->json(['success' => true, 'folder' => $folder]);
     }
 
     /**

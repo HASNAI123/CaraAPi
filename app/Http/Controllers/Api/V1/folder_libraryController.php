@@ -50,18 +50,19 @@ class folder_libraryController extends Controller
 
     public function store(Request $request)
     {
-        $title=$request->folder_title;
-        $password=$request->password;
-        $user= Auth::user()->name;
+        $title = $request->title;
+        $password = $request->password;
+        $created_by = $request->created_by;
 
-        folder::create([
-            'title'=>$title,
-            'password'=>$password,
-            'created_by'=>$user,
+        $folder = Folder::create([
+            'title' => $title,
+            'password' => $password,
+            'created_by' => $created_by,
         ]);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'folder' => $folder]);
     }
+
 
     public function edit($id)
     {
