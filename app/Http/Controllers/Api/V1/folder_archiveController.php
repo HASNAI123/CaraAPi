@@ -121,26 +121,26 @@ class folder_archiveController extends Controller
         }
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function deleteFolder($id)
 {
-    $user = Auth::user()->name;
-    $query = DB::table('roles')
-        ->select('roles.title')
-        ->join('role_user', 'role_user.role_id', '=', 'roles.id')
-        ->where('role_user.user_id', '=', Auth::user()->id)
-        ->first();
-    $folder = DB::table('archive_folders')->where('id', $id)->first();
-    if ($folder->created_by == $user || $query->title == "Admin") {
-        DB::table('archive_folders')->where('id', $id)->delete();
-        return response()->json(['message' => 'Folder successfully deleted.']);
-    } else {
-        return response()->json(['error' => 'You are not authorized to delete this folder.'], 403);
-    }
+     // Find the folder by ID
+     $folder = folder_archive::find($id);
+
+     // Check if the folder exists
+     if (!$folder) {
+         return response()->json(['message' => 'Folder not found'], 404);
+     }
+
+     // Perform the delete operation
+     $folder->delete();
+
+     return response()->json(['message' => 'Folder deleted successfully'], 200);
 }
 }

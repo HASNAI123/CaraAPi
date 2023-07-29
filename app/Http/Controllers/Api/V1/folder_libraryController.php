@@ -220,16 +220,21 @@ public function restore($id)
  * @param  int  $id
  * @return \Illuminate\Http\Response
  */
-public function perma_del($id)
-{
-    if (! Gate::allows('folder_delete')) {
-        return response()->json(['message' => 'You are not authorized to perform this action'], 401);
-    }
-    $folder = Folder::onlyTrashed()->findOrFail($id);
-    $folder->forceDelete();
+public function deleteFolder($id)
+    {
+        // Find the folder by ID
+        $folder = Folder::find($id);
 
-    return response()->json(['message' => 'Folder has been permanently deleted successfully']);
-}
+        // Check if the folder exists
+        if (!$folder) {
+            return response()->json(['message' => 'Folder not found'], 404);
+        }
+
+        // Perform the delete operation
+        $folder->delete();
+
+        return response()->json(['message' => 'Folder deleted successfully'], 200);
+    }
 
 public function export_generatesop()
 {
