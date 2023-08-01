@@ -21,8 +21,7 @@ class Sop_upload extends Controller
             'uploaded_by' => 'required|string',
             'sop_title' => 'required|string',
             'business_unit' => 'required|string',
-            'sop_file' => 'array', // Allow an array of strings
-            'sop_file.*' => 'string', // Validate each item in the array as a string
+            'sop_file' => 'string', // Allow an array of strings
             'archive_folder' => 'required|integer', // Archive folder ID as an integer
         ]);
 
