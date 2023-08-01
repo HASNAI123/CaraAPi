@@ -23,6 +23,7 @@ class Sop_upload extends Controller
             'business_unit' => 'required|string',
             'sop_file' => 'array', // Allow an array of strings
             'sop_file.*' => 'string', // Validate each item in the array as a string
+            'archive_folder' => 'required|integer', // Archive folder ID as an integer
         ]);
 
         if ($validator->fails()) {
@@ -34,6 +35,7 @@ class Sop_upload extends Controller
         $sop->uploaded_by = $request->uploaded_by;
         $sop->sop_title = $request->sop_title;
         $sop->business_unit = $request->business_unit;
+        $sop->archive_folder = $request->archive_folder; // Assign the archive_folder ID
 
         // Save the SOP record in the database
         $sop->save();
@@ -47,6 +49,7 @@ class Sop_upload extends Controller
 
         return response()->json(['message' => 'SOP uploaded successfully', 'sop' => $sop], 200);
     }
+
 
     /**
      * Display the specified resource.
