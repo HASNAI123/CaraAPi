@@ -21,7 +21,8 @@ class Sop_upload extends Controller
             'uploaded_by' => 'required|string',
             'sop_title' => 'required|string',
             'business_unit' => 'required|string',
-            'sop_file' => 'string',
+            'sop_file' => 'array', // Allow an array of strings
+            'sop_file.*' => 'string', // Validate each item in the array as a string
         ]);
 
         if ($validator->fails()) {
@@ -36,6 +37,13 @@ class Sop_upload extends Controller
 
         // Save the SOP record in the database
         $sop->save();
+
+        // Handle the multiple files
+        if ($request->has('sop_file')) {
+            $sopFiles = $request->input('sop_file');
+            $sop->sop_file = json_encode($sopFiles); // Convert the array to JSON and save it in the database
+            $sop->save();
+        }
 
         return response()->json(['message' => 'SOP uploaded successfully', 'sop' => $sop], 200);
     }

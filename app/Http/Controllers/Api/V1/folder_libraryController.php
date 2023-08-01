@@ -70,35 +70,29 @@ class folder_libraryController extends Controller
 
         return response()->json(['view' => view('admin.Folders.edit', compact('folder'))->render()]);
     }
-
     public function update(Request $request, $id)
     {
-        $user= Auth::user()->name;
+        // Retrieve the authenticated user
+        $user = Auth::user();
 
-        $query=DB::table('roles')
-        ->select('roles.title')
-        ->join('role_user','role_user.role_id','=','roles.id')
-        ->where('role_user.user_id','=',Auth::user()->id)
-        ->first();
+        if (!$user) {
+            return response()->json(['msg' => 'Unauthorized'], 401);
+        }
 
-        $folder=$ids=DB::table('folders')->where('id',$id)->first();
+        $query = $user->roles()->pluck('title')->first();
+        $folder = Folder::findOrFail($id);
 
-        if($folder->created_by==$user || $query->title=="Admin"){
-            $password=$request->password;
-
-            DB::table('folders')
-            ->where('id', $id)
-            ->limit(1)
-            ->update(array('title' => $request->folder_title, 'password'=> $request->password));
+        if ($folder->created_by == $user->name || $query == "Admin") {
+            $folder->update([
+                'title' => $request->folder_title,
+                'password' => $request->password,
+            ]);
 
             return response()->json(['success' => true]);
         } else {
-            $folder=DB::table('folders')->where('id',$id)->get();
-
-            return response()->json(['view' => view('admin.Folders.edit', compact('folder'))->withErrors(['msg' => 'This Folder is created by another user'])]);
+            return response()->json(['msg' => 'This Folder is created by another user'], 403);
         }
     }
-
     public function show($id)
     {
         $generatesop = DB::table('generatesops')->where('folder',$id)->get();

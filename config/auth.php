@@ -13,6 +13,11 @@ return [
     |
     */
 
+    'api' => [
+        'driver' => 'passport', // Use the appropriate driver for API authentication (e.g., passport or sanctum)
+        'provider' => 'users',  // The user provider to use (e.g., the default 'users' provider)
+    ],
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
