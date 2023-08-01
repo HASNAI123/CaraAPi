@@ -21,7 +21,7 @@ class Sop_upload extends Controller
             'uploaded_by' => 'required|string',
             'sop_title' => 'required|string',
             'business_unit' => 'required|string',
-            'sop_file' => 'string', // Allow an array of strings
+            'sop_file' => 'string', // Allow a string (single file)
             'archive_folder' => 'required|integer', // Archive folder ID as an integer
         ]);
 
@@ -36,18 +36,15 @@ class Sop_upload extends Controller
         $sop->business_unit = $request->business_unit;
         $sop->archive_folder = $request->archive_folder; // Assign the archive_folder ID
 
-        // Save the SOP record in the database
-        $sop->save();
-
-        // Handle the multiple files
+        // Handle the sop_file as a string (single file)
         if ($request->has('sop_file')) {
-            $sopFiles = $request->input('sop_file');
-            $sop->sop_file = json_encode($sopFiles); // Convert the array to JSON and save it in the database
+            $sop->sop_file = $request->input('sop_file');
             $sop->save();
         }
 
         return response()->json(['message' => 'SOP uploaded successfully', 'sop' => $sop], 200);
     }
+
 
 
     /**
