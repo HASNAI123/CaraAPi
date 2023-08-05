@@ -99,26 +99,20 @@ class folder_archiveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user()->name;
+        $folder = folder_archive::findOrFail($id);
 
-        $query = DB::table('roles')
-            ->select('roles.title')
-            ->join('role_user', 'role_user.role_id', '=', 'roles.id')
-            ->where('role_user.user_id', '=', Auth::user()->id)
-            ->first();
+        $folder->update([
+            'title' => $request->folder_title,
+            'password' => $request->password,
+        ]);
 
-        $folder = $ids = DB::table('archive_folders')->where('id', $id)->first();
+        // Retrieve the updated folder again to include the updated data in the response
+        $updatedFolder = folder_archive::findOrFail($id);
 
-        if ($folder->created_by == $user || $query->title == "Admin") {
-            DB::table('archive_folders')
-                ->where('id', $id)
-                ->limit(1)
-                ->update(array('title' => $request->input('folder_title'), 'password' => $request->input('password')));
-
-            return response()->json(['message' => 'Folder updated successfully']);
-        } else {
-            return response()->json(['message' => 'This Folder is created by another user'], 403);
-        }
+        return response()->json([
+            'success' => true,
+            'folder' => $updatedFolder,
+        ]);
     }
 
 

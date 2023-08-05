@@ -72,27 +72,22 @@ class folder_libraryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // Retrieve the authenticated user
-        $user = Auth::user();
-
-        if (!$user) {
-            return response()->json(['msg' => 'Unauthorized'], 401);
-        }
-
-        $query = $user->roles()->pluck('title')->first();
         $folder = Folder::findOrFail($id);
 
-        if ($folder->created_by == $user->name || $query == "Admin") {
-            $folder->update([
-                'title' => $request->folder_title,
-                'password' => $request->password,
-            ]);
+        $folder->update([
+            'title' => $request->folder_title,
+            'password' => $request->password,
+        ]);
 
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['msg' => 'This Folder is created by another user'], 403);
-        }
+        // Retrieve the updated folder again to include the updated data in the response
+        $updatedFolder = Folder::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'folder' => $updatedFolder,
+        ]);
     }
+
     public function show($id)
     {
         $generatesop = DB::table('generatesops')->where('folder',$id)->get();
