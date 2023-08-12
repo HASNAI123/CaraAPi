@@ -23,4 +23,16 @@ class SopController extends Controller
 
         return response()->json($sops);
     }
+    public function deleteSop($id)
+    {
+        $sop = Sop::find($id);
+
+        if (!$sop) {
+            return response()->json(['error' => 'SOP not found.'], 404);
+        }
+
+        $sop->delete();
+
+        return response()->json(['message' => 'SOP deleted.']);
+    }
 }

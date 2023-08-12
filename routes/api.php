@@ -30,11 +30,12 @@ Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getU
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
+
 Route::get('/generatesops', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'index']);
 Route::get('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'show']);
 Route::post('/generatesops', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'store']);
 Route::put('/generatesops/{id}', [\App\Http\Controllers\Api\V1\GeneratesopController::class, 'update']);
-Route::delete('/generatesops/{id}', [App\Http\Controllers\Api\GeneratesopController::class, 'destroy']);
+Route::delete('/generatesops/{id}', [App\Http\Controllers\Api\V1\GeneratesopController::class, 'destroy']);
 Route::post('/generatesops/upload', [App\Http\Controllers\Api\v1\GeneratesopController::class, 'upload']);
 
 //Sop upload api
@@ -86,9 +87,11 @@ Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUs
 
 Route::post('/api/v1/roles/{role_id}/permissions', [\App\Http\Controllers\Api\v1\PermissionController::class, 'addPermissionsToRole']);
 
-//Get Sop
+//Uploaded Sop
 Route::get('sops', '\App\Http\Controllers\Api\V1\SopController@getSop');
+Route::delete('sops/{id}', 'App\Http\Controllers\Api\V1\SopController@deleteSop');
 
+//Generated Sops
 Route::get('Generated_sops', '\App\Http\Controllers\Api\V1\SopController@getAllGeneratedSops');
 
 
