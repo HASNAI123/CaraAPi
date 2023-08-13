@@ -88,6 +88,33 @@ class LoginController extends Controller
         return response()->json(['token' => $token], 200);
     }
 
+    public function store(Request $request)
+    {
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'user_name' => 'required',
+            'business_unit' => 'required',
+            'feedback' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        // Create a new Feedback instance and save the data
+        $feedback = new Feedback([
+            'user_id' => $request->user_id,
+            'user_name' => $request->user_name,
+            'business_unit' => $request->business_unit,
+            'feedback' => $request->feedback,
+        ]);
+
+        $feedback->save();
+
+        return response()->json(['message' => 'Feedback saved successfully'], 201);
+    }
+
     public function getOnlineUsersCount()
     {
         $onlineUsersCount = PersonalAccessToken::where('last_used_at', '>', now()->subMinutes(5))->count();

@@ -84,6 +84,8 @@ Route::get('/logs', '\App\Http\Controllers\Api\V1\LogController@index');
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUsersCount');
 
+Route::post('feedback', '\App\Http\Controllers\Api\V1\FeedbackController@store');
+
 
 Route::post('/api/v1/roles/{role_id}/permissions', [\App\Http\Controllers\Api\v1\PermissionController::class, 'addPermissionsToRole']);
 
