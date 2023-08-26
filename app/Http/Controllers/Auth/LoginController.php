@@ -44,6 +44,7 @@ class LoginController extends Controller
             $role = $user->role;
             $userId = $user->user_id; // Retrieve the user_id
             $id = $user->id; // Retrieve the id
+            $business_unit = $user->business_unit;
 
             // Save the token in the database
             PersonalAccessToken::findToken($token)->forceFill([
@@ -58,7 +59,8 @@ class LoginController extends Controller
                 'user_id' => $userId,
                 'name' => $name,
                 'role' => $role,
-                'access_token' => $token
+                'access_token' => $token,
+                'business_unit' => $business_unit
             ], 200);
         } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
