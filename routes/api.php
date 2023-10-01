@@ -26,6 +26,11 @@ Route::put('user_update', 'App\Http\Controllers\Auth\RegisterController@user_upd
 Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getUserByUserId');
 
 
+//Checklists API
+
+Route::post('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@SAstore');
+
+
 
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
