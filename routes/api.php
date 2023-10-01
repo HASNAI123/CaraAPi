@@ -30,6 +30,8 @@ Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getU
 
 Route::post('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@SAstore');
 
+Route::get('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@index');
+
 
 
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);

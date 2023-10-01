@@ -12,7 +12,13 @@ class RemarkSA extends Model
 
     protected $fillable = [
         'remark_data',
+        'CreatorID',
+        'CreatorName',
+        'PreparorID',
+        'PreparorName',
+        'StoreCode',
     ];
+
 
     protected $casts = [
         'remark_data' => 'json',
