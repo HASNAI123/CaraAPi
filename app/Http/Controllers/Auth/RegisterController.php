@@ -92,22 +92,40 @@ class RegisterController extends Controller
 
 
     public function user_update(Request $request)
-{
-    $user = User::where('user_id',$request->user_id)->update([
-        'name' => $request->input('name'),
-        'user_id' => $request->input('user_id'),
-        'password' => Hash::make($request->input('password')),
-        'business_unit' => $request->input('business_unit'),
-        'role' => $request->input('roles')
-    ]);
+    {
+        $user = User::where('user_id', $request->user_id)->first();
 
-    $data = User::where('user_id',$request->input('user_id'))->get();
+        if (!$user) {
+            return response()->json([
+                'msg' => 'User not found',
+            ], 404);
+        }
 
-    return response()->json([
-        'msg' => 'Successfully Updated',
-        'data' => $data
-    ], 201);
-}
+        $updateData = [
+            'name' => $request->input('name'),
+            'user_id' => $request->input('user_id'),
+            'business_unit' => $request->input('business_unit'),
+            'role' => $request->input('roles'),
+        ];
+
+        // Check if password is provided in the request
+        if ($request->has('password')) {
+            // Hash and update the password if provided
+            $updateData['password'] = Hash::make($request->input('password'));
+        }
+
+        // Update the user's data
+        $user->update($updateData);
+
+        // Retrieve the updated user data
+        $data = User::where('user_id', $request->input('user_id'))->get();
+
+        return response()->json([
+            'msg' => 'Successfully Updated',
+            'data' => $data
+        ], 201);
+    }
+
 
 
 }
