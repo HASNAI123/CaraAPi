@@ -28,9 +28,18 @@ Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getU
 
 //Checklists API
 
+//Checklists Security Aeon
+
 Route::post('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@SAstore');
 
 Route::get('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@index');
+
+//Checklists Security Aeon Big
+
+Route::post('/SABstore', 'App\Http\Controllers\Api\V1\ChecklistController@SABstore');
+
+Route::get('/SABstore', 'App\Http\Controllers\Api\V1\ChecklistController@GETSAB');
+
 
 
 
