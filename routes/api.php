@@ -34,11 +34,25 @@ Route::post('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@SAstore
 
 Route::get('/SAstore', 'App\Http\Controllers\Api\V1\ChecklistController@index');
 
+Route::get('/SAstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@getRemarkSAById');
+
+Route::delete('/SAstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@deleteRemarkSAById');
+
+Route::put('/SAstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@updateRemarkSAById');
+
+
+
 //Checklists Security Aeon Big
 
 Route::post('/SABstore', 'App\Http\Controllers\Api\V1\ChecklistController@SABstore');
 
 Route::get('/SABstore', 'App\Http\Controllers\Api\V1\ChecklistController@GETSAB');
+
+Route::get('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@getRemarkSABById');
+
+Route::delete('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@deleteRemarkSAById');
+
+Route::put('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@updateRemarkSABById');
 
 
 

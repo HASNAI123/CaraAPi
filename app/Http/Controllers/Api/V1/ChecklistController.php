@@ -45,6 +45,69 @@ class ChecklistController extends Controller
         ], 201);
     }
 
+    public function getRemarkSAById($id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSA::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Decode the JSON data to an array
+    $dataArray = json_decode($remark->remark_data, true);
+
+    return response()->json([
+        'message' => 'Remark found',
+        'data' => [
+            'remark' => $remark,
+            'dataArray' => $dataArray,
+        ],
+    ], 200);
+}
+
+public function updateRemarkSAById(Request $request, $id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSA::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Retrieve the new remarks data from the request
+    $newRemarksData = $request->json()->get('remark_data');
+
+    // Check if the new remarks data is provided in the request
+    if (!$newRemarksData) {
+        return response()->json(['message' => 'New remarks data not provided'], 400);
+    }
+
+    // Update the remark_data field with the new data
+    $remark->remark_data = json_encode($newRemarksData);
+    $remark->save();
+
+    return response()->json(['message' => 'Remark data updated successfully', 'data' => $remark], 200);
+}
+
+
+public function deleteRemarkSAById($id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSAB::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Delete the remark
+    $remark->delete();
+
+    return response()->json(['message' => 'Remark deleted successfully'], 200);
+}
 
     public function SABstore(Request $request)
     {
@@ -102,5 +165,52 @@ public function GETSAB()
     return response()->json([
         'data' => $remarks,
     ]);
+}
+
+public function getRemarkSABById($id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSAB::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Decode the JSON data to an array
+    $dataArray = json_decode($remark->remark_data, true);
+
+    return response()->json([
+        'message' => 'Remark found',
+        'data' => [
+            'remark' => $remark,
+            'dataArray' => $dataArray,
+        ],
+    ], 200);
+}
+
+public function updateRemarkSABById(Request $request, $id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSAB::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Retrieve the new remarks data from the request
+    $newRemarksData = $request->json()->get('remark_data');
+
+    // Check if the new remarks data is provided in the request
+    if (!$newRemarksData) {
+        return response()->json(['message' => 'New remarks data not provided'], 400);
+    }
+
+    // Update the remark_data field with the new data
+    $remark->remark_data = json_encode($newRemarksData);
+    $remark->save();
+
+    return response()->json(['message' => 'Remark data updated successfully', 'data' => $remark], 200);
 }
 }
