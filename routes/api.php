@@ -50,7 +50,7 @@ Route::get('/SABstore', 'App\Http\Controllers\Api\V1\ChecklistController@GETSAB'
 
 Route::get('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@getRemarkSABById');
 
-Route::delete('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@deleteRemarkSAById');
+Route::delete('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@deleteRemarkSABById');
 
 Route::put('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@updateRemarkSABById');
 

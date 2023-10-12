@@ -94,7 +94,7 @@ public function updateRemarkSAById(Request $request, $id)
 public function deleteRemarkSAById($id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSAB::find($id);
+    $remark = RemarkSA::find($id);
 
     // Check if the remark exists
     if (!$remark) {
@@ -106,6 +106,16 @@ public function deleteRemarkSAById($id)
 
     return response()->json(['message' => 'Remark deleted successfully'], 200);
 }
+
+
+
+
+
+
+
+
+
+
 
     public function SABstore(Request $request)
     {
@@ -210,5 +220,21 @@ public function updateRemarkSABById(Request $request, $id)
     $remark->save();
 
     return response()->json(['message' => 'Remark data updated successfully', 'data' => $remark], 200);
+}
+
+public function deleteRemarkSABById($id)
+{
+    // Find the RemarkSA model by ID
+    $remark = RemarkSAB::find($id);
+
+    // Check if the remark exists
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
+
+    // Delete the remark
+    $remark->delete();
+
+    return response()->json(['message' => 'Remark deleted successfully'], 200);
 }
 }
