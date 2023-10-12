@@ -69,45 +69,25 @@ class ChecklistController extends Controller
 
 public function updateRemarkSAById(Request $request, $id)
 {
-      // Retrieve the array of JSON objects from the request
-      $dataArray = $request->json()->get('RemarksData');
 
-      // Additional parameters from the request body
-      $creatorId = $request->input('CreatorID');
-      $creatorName = $request->input('CreatorName');
-      $preparorId = $request->input('PreparorID');
-      $preparorName = $request->input('PreparorName');
-      $storeCode = $request->input('StoreCode');
+    $remark = RemarkSA::find($id);
 
-      // Iterate through the dataArray and update the records
-      foreach ($dataArray as $data) {
-          // Retrieve the unique identifier for the object you want to update
-          $id = $data['id'];
+    if (!$remark) {
+        return response()->json(['message' => 'Remark not found'], 404);
+    }
 
-          // Find the RemarkSA model by ID
-          $remark = RemarkSA::find($id);
+    // Retrieve the array of JSON objects from the request
+    $dataArray = $request->json()->get('RemarksData');
 
-          // Check if the remark exists
-          if (!$remark) {
-              // Handle the case where the remark does not exist
-              continue; // Skip this iteration and proceed with the next one
-          }
+    // Update the 'remark_data' field with the new data
+    $remark->remark_data = json_encode($dataArray);
 
-          // Update the remark model with the new data
-          $remark->remark = $data['remark'];
-          $remark->answer = $data['answer'];
-          $remark->attachment = $data['attachment'];
-          $remark->questionText = $data['questionText'];
-          $remark->pageTitle = $data['pageTitle'];
-          $remark->pageScore = $data['pageScore'];
+    // Save the updated data to the database
+    $remark->save();
 
-          // Save the updated data to the database
-          $remark->save();
-      }
-
-      return response()->json([
-          'message' => 'Remarks updated successfully',
-      ], 200);
+    return response()->json([
+        'message' => 'Remarks updated successfully',
+    ], 200);
 }
 
 
