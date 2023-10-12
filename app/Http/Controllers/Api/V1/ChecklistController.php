@@ -69,27 +69,45 @@ class ChecklistController extends Controller
 
 public function updateRemarkSAById(Request $request, $id)
 {
-    // Find the RemarkSA model by ID
-    $remark = RemarkSA::find($id);
+      // Retrieve the array of JSON objects from the request
+      $dataArray = $request->json()->get('RemarksData');
 
-    // Check if the remark exists
-    if (!$remark) {
-        return response()->json(['message' => 'Remark not found'], 404);
-    }
+      // Additional parameters from the request body
+      $creatorId = $request->input('CreatorID');
+      $creatorName = $request->input('CreatorName');
+      $preparorId = $request->input('PreparorID');
+      $preparorName = $request->input('PreparorName');
+      $storeCode = $request->input('StoreCode');
 
-    // Retrieve the new remarks data from the request
-    $newRemarksData = $request->json()->get('remark_data');
+      // Iterate through the dataArray and update the records
+      foreach ($dataArray as $data) {
+          // Retrieve the unique identifier for the object you want to update
+          $id = $data['id'];
 
-    // Check if the new remarks data is provided in the request
-    if (!$newRemarksData) {
-        return response()->json(['message' => 'New remarks data not provided'], 400);
-    }
+          // Find the RemarkSA model by ID
+          $remark = RemarkSA::find($id);
 
-    // Update the remark_data field with the new data
-    $remark->remark_data = json_encode($newRemarksData);
-    $remark->save();
+          // Check if the remark exists
+          if (!$remark) {
+              // Handle the case where the remark does not exist
+              continue; // Skip this iteration and proceed with the next one
+          }
 
-    return response()->json(['message' => 'Remark data updated successfully', 'data' => $remark], 200);
+          // Update the remark model with the new data
+          $remark->remark = $data['remark'];
+          $remark->answer = $data['answer'];
+          $remark->attachment = $data['attachment'];
+          $remark->questionText = $data['questionText'];
+          $remark->pageTitle = $data['pageTitle'];
+          $remark->pageScore = $data['pageScore'];
+
+          // Save the updated data to the database
+          $remark->save();
+      }
+
+      return response()->json([
+          'message' => 'Remarks updated successfully',
+      ], 200);
 }
 
 
