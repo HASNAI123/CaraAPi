@@ -200,26 +200,24 @@ public function getRemarkSABById($id)
 public function updateRemarkSABById(Request $request, $id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSAB::find($id);
+    $remark = RemarkSA::find($id);
 
-    // Check if the remark exists
     if (!$remark) {
         return response()->json(['message' => 'Remark not found'], 404);
     }
 
-    // Retrieve the new remarks data from the request
-    $newRemarksData = $request->json()->get('remark_data');
+    // Retrieve the array of JSON objects from the request
+    $dataArray = $request->json()->get('RemarksData');
 
-    // Check if the new remarks data is provided in the request
-    if (!$newRemarksData) {
-        return response()->json(['message' => 'New remarks data not provided'], 400);
-    }
+    // Update the 'remark_data' field with the new data
+    $remark->remark_data = json_encode($dataArray);
 
-    // Update the remark_data field with the new data
-    $remark->remark_data = json_encode($newRemarksData);
+    // Save the updated data to the database
     $remark->save();
 
-    return response()->json(['message' => 'Remark data updated successfully', 'data' => $remark], 200);
+    return response()->json([
+        'message' => 'Remarks updated successfully',
+    ], 200);
 }
 
 public function deleteRemarkSABById($id)
