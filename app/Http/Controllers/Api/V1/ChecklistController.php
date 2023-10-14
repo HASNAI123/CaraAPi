@@ -200,7 +200,7 @@ public function getRemarkSABById($id)
 public function updateRemarkSABById(Request $request, $id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSA::find($id);
+    $remark = RemarkSAB::find($id);
 
     if (!$remark) {
         return response()->json(['message' => 'Remark not found'], 404);
