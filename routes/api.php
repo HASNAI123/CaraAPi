@@ -57,6 +57,27 @@ Route::put('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@up
 
 
 
+// WELLNESS CHECKLISTS
+
+// Beauty
+
+Route::post('/Beauty', 'App\Http\Controllers\Api\V1\WellnessController@beautystore');
+
+Route::get('/Beauty', 'App\Http\Controllers\Api\V1\WellnessController@BeautyAll');
+
+Route::get('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getBeautyById');
+
+Route::delete('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteBeautyById');
+
+Route::put('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateBeautyAById');
+
+
+// Nutrionlaist
+
+
+
+
+
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
