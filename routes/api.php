@@ -75,6 +75,18 @@ Route::put('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updat
 // Nutrionlaist
 
 
+// AEON MALL AUDIT
+
+Route::post('/AeonMallAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonMallAuditstore');
+
+Route::get('/AeonMallAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonMallAuditAll');
+
+Route::get('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonMallAuditById');
+
+Route::delete('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@ddeleteAeonMallAuditById');
+
+Route::put('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonMallAuditAById');
+
 
 
 
