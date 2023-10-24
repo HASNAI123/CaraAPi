@@ -89,6 +89,45 @@ Route::put('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@
 
 
 
+// AEON Store AUDIT
+
+Route::post('/AeonStoreAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonStoreAuditstore');
+
+Route::get('/AeonStoreAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonStoreAuditAll');
+
+Route::get('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonStoreAuditById');
+
+Route::delete('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonStoreAuditById');
+
+Route::put('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonStoreAuditAById');
+
+
+// AEON Big AUDIT
+
+Route::post('/AeonBigAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonBigAuditstore');
+
+Route::get('/AeonBigAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonBigAuditAll');
+
+Route::get('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonBigAuditById');
+
+Route::delete('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonBigAuditById');
+
+Route::put('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonBigAuditAById');
+
+
+
+// AEON FPC AUDIT
+
+Route::post('/AeonFPCAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonFPCAuditstore');
+
+Route::get('/AeonFPCAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonFPCAuditAll');
+
+Route::get('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonFPCAuditById');
+
+Route::delete('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonFPCAuditById');
+
+Route::put('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonFPCAuditAById');
+
 
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
