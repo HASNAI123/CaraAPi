@@ -72,8 +72,64 @@ Route::delete('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@de
 Route::put('/Beauty/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateBeautyAById');
 
 
-// Nutrionlaist
+// Nutritionalist
 
+
+Route::post('/Nutritionalist', 'App\Http\Controllers\Api\V1\WellnessController@NUTRITIONISTstore');
+
+Route::get('/Nutritionalist', 'App\Http\Controllers\Api\V1\WellnessController@NUTRITIONISTAll');
+
+Route::get('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getNUTRITIONISTById');
+
+Route::delete('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteNUTRITIONISTById');
+
+Route::put('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateNUTRITIONISTyId');
+
+// Operations
+
+
+Route::post('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@Pharmaciststore');
+
+Route::get('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@OperationsAll');
+
+Route::get('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getOperationsById');
+
+Route::delete('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteOperationsById');
+
+Route::put('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateOperationsbyId');
+
+
+
+//Pharmacist
+
+
+Route::post('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@Operationsstore');
+
+Route::get('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@PharmacistAll');
+
+Route::get('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getPharmacistById');
+
+Route::delete('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deletePharmacistById');
+
+Route::put('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updatePharmacistbyId');
+
+
+//Loss Prevention
+
+
+Route::post('/LossPrevention', 'App\Http\Controllers\Api\V1\WellnessController@LossPreventionstore');
+
+Route::get('/LossPrevention', 'App\Http\Controllers\Api\V1\WellnessController@LossPreventionAll');
+
+Route::get('/LossPrevention/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getLossPreventionById');
+
+Route::delete('/LossPrevention/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteLossPreventionById');
+
+Route::put('/LossPrevention/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateLossPreventionbyId');
+
+
+
+//SAFETY CHECKLISTS
 
 // AEON MALL AUDIT
 
