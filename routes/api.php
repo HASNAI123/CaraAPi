@@ -185,6 +185,34 @@ Route::delete('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyControlle
 Route::put('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonFPCAuditAById');
 
 
+// Quality Management
+
+// HACCP
+
+Route::post('/HACCP', 'App\Http\Controllers\Api\V1\SafetyController@HACCP');
+
+Route::get('/HACCP', 'App\Http\Controllers\Api\V1\SafetyController@HACCPAll');
+
+Route::get('/HACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@getHACCPById');
+
+Route::delete('/HACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteBeautyById');
+
+Route::put('/HACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateHACCPAById');
+
+
+// Without HACCP
+
+Route::post('/WHACCP', 'App\Http\Controllers\Api\V1\SafetyController@WHACCP');
+
+Route::get('/WHACCP', 'App\Http\Controllers\Api\V1\SafetyController@WHACCPAll');
+
+Route::get('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@getWHACCPById');
+
+Route::delete('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteWHACCPById');
+
+Route::put('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateWHACCPAById');
+
+
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
