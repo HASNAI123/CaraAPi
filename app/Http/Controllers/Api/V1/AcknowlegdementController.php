@@ -15,6 +15,29 @@ class AcknowlegdementController extends Controller
         return Excel::download(new AcknowledgmentExport, 'acknowledgments.xlsx');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'User_id' => 'required',
+            'user_name' => 'required',
+            'Terms_1' => 'required',
+            'Terms_2' => 'required',
+            'Date_Downloaded' => 'required|date',
+            'Type' => 'nullable'
+        ]);
+
+        Acknowledgment::create([
+            'User_id' => $request->input('User_id'),
+            'user_name' => $request->input('user_name'),
+            'Terms_1' => $request->input('Terms_1'),
+            'Terms_2' => $request->input('Terms_2'),
+            'Date_Downloaded' => $request->input('Date_Downloaded'),
+            'Type' => $request->input('Type')
+        ]);
+
+        return response()->json(['message' => 'Data saved successfully'], 201);
+    }
+
 
 
 }

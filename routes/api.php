@@ -29,6 +29,7 @@ Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getU
 //Acknowldegemnt Api
 
 Route::get('/Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@All_reports');
+Route::post('/Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@store');
 
 
 

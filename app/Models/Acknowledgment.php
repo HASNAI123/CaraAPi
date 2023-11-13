@@ -16,6 +16,7 @@ class Acknowledgment extends Model
         'Terms_1',
         'Terms_2',
         'Date_Downloaded',
+        'Type'
     ];
 
 
