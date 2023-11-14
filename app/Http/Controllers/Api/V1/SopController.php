@@ -35,4 +35,20 @@ class SopController extends Controller
 
         return response()->json(['message' => 'SOP deleted.']);
     }
+
+
+    public function getRecentGeneratedSops()
+{
+    $recentSops = Generatesop::orderBy('created_at', 'desc')->take(5)->get();
+
+    return response()->json($recentSops);
+}
+
+
+public function getRecentArchiveSops()
+{
+    $recentSops = Sop::orderBy('created_at', 'desc')->take(5)->get();
+
+    return response()->json($recentSops);
+}
 }

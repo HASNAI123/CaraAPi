@@ -18,7 +18,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('users', 'App\Http\Controllers\Api\V1\UsersController');
 });
 
-//rando
+//Authentication API's
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
 
 Route::put('user_update', 'App\Http\Controllers\Auth\RegisterController@user_update');
@@ -220,6 +220,15 @@ Route::delete('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@deleteW
 Route::put('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateWHACCPAById');
 
 
+//SOP API's
+
+// Get latest Sops' API
+
+Route::get('latestarchivesops', 'App\Http\Controllers\Api\V1\SopController@getRecentArchiveSops');
+
+Route::get('latestGeneratedsops', 'App\Http\Controllers\Api\V1\SopController@getRecentGeneratedSops');
+
+
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
@@ -274,8 +283,10 @@ Route::get('/logs', '\App\Http\Controllers\Api\V1\LogController@index');
 
 //Login APi routes
 
+
+Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getLatestLogins');
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
-Route::get('onlineUsers', 'App\Http\Controllers\Auth\LoginController@getOnlineUsersCount');
+
 
 Route::post('feedback', '\App\Http\Controllers\Api\V1\FeedbackController@store');
 

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\PersonalAccessToken;
+use App\Models\User;
 
 
 class LoginController extends Controller
@@ -45,6 +46,7 @@ class LoginController extends Controller
             $userId = $user->user_id; // Retrieve the user_id
             $id = $user->id; // Retrieve the id
             $business_unit = $user->business_unit;
+            $Last_login = $user->Last_login;
 
             // Save the token in the database
             PersonalAccessToken::findToken($token)->forceFill([
@@ -54,19 +56,29 @@ class LoginController extends Controller
                 'abilities' => ['*'],
             ])->save();
 
+            // Update last_login timestamp
+            $user->update(['Last_login' => now()]);
+
             return response()->json([
                 'id' => $id,
                 'user_id' => $userId,
                 'name' => $name,
                 'role' => $role,
                 'access_token' => $token,
-                'business_unit' => $business_unit
+                'business_unit' => $business_unit,
+                'Last_login' => $user->last_login // Use the updated value
             ], 200);
-        } else {
-            return response()->json(['error' => 'Invalid credentials'], 401);
-        }
-    }
+        }}
 
+        public function getLatestLogins()
+        {
+            // Retrieve the 5 latest login users
+            $latestLogins = User::orderBy('last_login', 'desc')
+                ->limit(5)
+                ->get();
+
+            return response()->json($latestLogins);
+        }
     /**
      * Log the user out (Invalidate the token).
      *
