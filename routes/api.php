@@ -64,6 +64,31 @@ Route::put('/SABstore/{id}', 'App\Http\Controllers\Api\V1\ChecklistController@up
 
 
 
+//Checklists Security Aeon MaxValue
+
+Route::post('/Security_MaxValue', 'App\Http\Controllers\Api\V1\SecurityController@MaxvalueStore');
+
+Route::get('/Security_MaxValue', 'App\Http\Controllers\Api\V1\SecurityController@MaxvalueALL');
+
+Route::get('/Security_MaxValue/{id}', 'App\Http\Controllers\Api\V1\SecurityController@getMaxvalueById');
+
+Route::delete('/Security_MaxValue/{id}', 'App\Http\Controllers\Api\V1\SecurityController@deleteMaxvalueById');
+
+Route::put('/Security_MaxValue/{id}', 'App\Http\Controllers\Api\V1\SecurityController@updateMaxvalueById');
+
+
+//Checklists Security Aeon FPC
+
+Route::post('/Security_Fpc', 'App\Http\Controllers\Api\V1\SecurityController@Security_FPCstore');
+
+Route::get('/Security_Fpc', 'App\Http\Controllers\Api\V1\SecurityController@Security_FPCindex');
+
+Route::get('/Security_Fpc/{id}', 'App\Http\Controllers\Api\V1\SecurityController@getRemarkSecurity_FPCById');
+
+Route::delete('/Security_Fpc/{id}', 'App\Http\Controllers\Api\V1\SecurityController@deleteRemarkSecurity_FPCById');
+
+Route::put('/Security_Fpc/{id}', 'App\Http\Controllers\Api\V1\SecurityController@updateSecurity_FPCById');
+
 // WELLNESS CHECKLISTS
 
 // Beauty

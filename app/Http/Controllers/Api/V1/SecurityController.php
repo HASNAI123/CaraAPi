@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Security_FPC;
 use App\Models\Securitymaxvalue;
-use App\Models\RemarkSAB;
 
-class ChecklistController extends Controller
+class SecurityController extends Controller
 {
-    public function SAstore(Request $request)
+    public function MaxvalueStore(Request $request)
     {
         // Validate the request data if needed
         $validatedData = $request->validate([
@@ -27,7 +27,7 @@ class ChecklistController extends Controller
         $storeCode = $request->input('StoreCode');
 
         // Create a new Remark model instance with the additional parameters
-        $remark = new RemarkSA([
+        $remark = new Securitymaxvalue([
             'CreatorID' => $creatorId,
             'CreatorName' => $creatorName,
             'PreparorID' => $preparorId,
@@ -45,10 +45,20 @@ class ChecklistController extends Controller
         ], 201);
     }
 
-    public function getRemarkSAById($id)
+    public function MaxvalueALL()
+{
+    // Retrieve all remarks from the database
+    $remarks = Securitymaxvalue::all();
+
+    return response()->json([
+        'data' => $remarks,
+    ]);
+}
+
+    public function getMaxvalueById($id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSA::find($id);
+    $remark = Securitymaxvalue::find($id);
 
     // Check if the remark exists
     if (!$remark) {
@@ -67,10 +77,10 @@ class ChecklistController extends Controller
     ], 200);
 }
 
-public function updateRemarkSAById(Request $request, $id)
+public function updateMaxvalueById(Request $request, $id)
 {
 
-    $remark = RemarkSA::find($id);
+    $remark = Securitymaxvalue::find($id);
 
     if (!$remark) {
         return response()->json(['message' => 'Remark not found'], 404);
@@ -91,10 +101,10 @@ public function updateRemarkSAById(Request $request, $id)
 }
 
 
-public function deleteRemarkSAById($id)
+public function deleteMaxvalueById($id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSA::find($id);
+    $remark = Securitymaxvalue::find($id);
 
     // Check if the remark exists
     if (!$remark) {
@@ -114,10 +124,12 @@ public function deleteRemarkSAById($id)
 
 
 
+// Security FPC
 
 
 
-    public function SABstore(Request $request)
+
+    public function Security_FPCstore(Request $request)
     {
         // Validate the request data if needed
         $validatedData = $request->validate([
@@ -135,7 +147,7 @@ public function deleteRemarkSAById($id)
         $storeCode = $request->input('StoreCode');
 
         // Create a new Remark model instance with the additional parameters
-        $remark = new RemarkSAB([
+        $remark = new Security_FPC([
             'CreatorID' => $creatorId,
             'CreatorName' => $creatorName,
             'PreparorID' => $preparorId,
@@ -155,30 +167,21 @@ public function deleteRemarkSAById($id)
 
 
 
-public function index()
+public function Security_FPCindex()
 {
     // Retrieve all remarks from the database
-    $remarks = RemarkSA::all();
+    $remarks = Security_FPC::all();
 
     return response()->json([
         'data' => $remarks,
     ]);
 }
 
-public function GETSAB()
-{
-    // Retrieve all remarks from the database
-    $remarks = RemarkSAB::all();
 
-    return response()->json([
-        'data' => $remarks,
-    ]);
-}
-
-public function getRemarkSABById($id)
+public function getRemarkSecurity_FPCById($id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSAB::find($id);
+    $remark = Security_FPC::find($id);
 
     // Check if the remark exists
     if (!$remark) {
@@ -197,10 +200,10 @@ public function getRemarkSABById($id)
     ], 200);
 }
 
-public function updateRemarkSABById(Request $request, $id)
+public function updateSecurity_FPCById(Request $request, $id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSAB::find($id);
+    $remark = Security_FPC::find($id);
 
     if (!$remark) {
         return response()->json(['message' => 'Remark not found'], 404);
@@ -220,10 +223,10 @@ public function updateRemarkSABById(Request $request, $id)
     ], 200);
 }
 
-public function deleteRemarkSABById($id)
+public function deleteRemarkSecurity_FPCById($id)
 {
     // Find the RemarkSA model by ID
-    $remark = RemarkSAB::find($id);
+    $remark = Security_FPC::find($id);
 
     // Check if the remark exists
     if (!$remark) {
