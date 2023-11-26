@@ -245,6 +245,14 @@ Route::delete('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@deleteW
 Route::put('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateWHACCPAById');
 
 
+//CAR FORM API
+
+Route::post('/CAR', 'App\Http\Controllers\Api\V1\CarController@Store');
+Route::get('/CAR/{id}', 'App\Http\Controllers\Api\V1\CarController@getFormById');
+Route::get('/CAR', 'App\Http\Controllers\Api\V1\CarController@getAllforms');
+Route::put('/CAR/{id}', 'App\Http\Controllers\Api\V1\CarController@updateForm');
+Route::delete('/CAR/{id}', 'App\Http\Controllers\Api\V1\CarController@deleteform');
+
 //SOP API's
 
 // Get latest Sops' API
