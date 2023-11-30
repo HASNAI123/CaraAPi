@@ -14,6 +14,8 @@ class CarController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
+            'NonConformity'  => 'nullable|string',
+            'DetailsNonConformity' => 'nullable|string',
             'description3' => 'nullable|string',
             'description4' => 'nullable|string',
             'description5' => 'nullable|string',

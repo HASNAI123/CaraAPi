@@ -12,6 +12,8 @@ class Car extends Model
     protected $table = 'CarForm';
 
     protected $fillable = [
+        'NonConformity',
+        'DetailsNonConformity',
         'description3',
         'description4',
         'description5',
