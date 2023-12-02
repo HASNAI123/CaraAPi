@@ -245,6 +245,47 @@ Route::delete('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@deleteW
 Route::put('/WHACCP/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateWHACCPAById');
 
 
+
+// QM_QAA_Aeon
+
+Route::post('/QM_QAA_Aeon', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_AEON_store');
+
+Route::get('/QM_QAA_Aeon', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_AEON_All');
+
+Route::get('/QM_QAA_Aeon/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@getQM_QAA_AEON_ById');
+
+Route::delete('/QM_QAA_Aeon/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@delete_QM_QAA_AEONById');
+
+Route::put('/QM_QAA_Aeon/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateQM_QAA_AEONById');
+
+
+
+// QM_QAA_Aeon_big
+
+Route::post('/QM_QAA_Aeon_big', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_Aeon_big_store');
+
+Route::get('/QM_QAA_Aeon_big', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_Aeon_big_All');
+
+Route::get('/QM_QAA_Aeon_big/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@getQM_QAA_Aeon_big_ById');
+
+Route::delete('/QM_QAA_Aeon_big/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@delete_QM_QAA_Aeon_bigById');
+
+Route::put('/QM_QAA_Aeon_big/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateQM_QAA_Aeon_bigById');
+
+
+// QM_QAA_Maxvalue
+
+Route::post('/QM_QAA_Maxvalue', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_Maxvalue_store');
+
+Route::get('/QM_QAA_Maxvalue', 'App\Http\Controllers\Api\V1\QM_Controller@QM_QAA_Maxvalue_All');
+
+Route::get('/QM_QAA_Maxvalue/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@getQM_QAA_Maxvalue_ById');
+
+Route::delete('/QM_QAA_Maxvalue/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@delete_QM_QAA_MaxvalueById');
+
+Route::put('/QM_QAA_Maxvalue/{id}', 'App\Http\Controllers\Api\V1\QM_Controller@updateQM_QAA_MaxvalueById');
+
+
 //CAR FORM API
 
 Route::post('/CAR', 'App\Http\Controllers\Api\V1\CarController@Store');
