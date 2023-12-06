@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Securitymaxvalue;
 use App\Models\RemarkSAB;
+use App\Models\RemarkSA;
 
 class ChecklistController extends Controller
 {
