@@ -11,32 +11,41 @@ use App\Models\RemarkSA;
 class ChecklistController extends Controller
 {
     public function SAstore(Request $request)
-    {
-        // Validate the request data if needed
-        $validatedData = $request->validate([
-            // Define validation rules here
-        ]);
+{
+    // Validate the request data if needed
+    $validatedData = $request->validate([
+        // Define validation rules here
+    ]);
 
-        // Retrieve the array of JSON objects from the request
-        $dataArray = $request->json()->get('RemarksData');
+    // Retrieve the array of JSON objects from the request
+    $dataArray = $request->json()->get('RemarksData');
 
-        // Additional parameters from the request body
-        $creatorId = $request->input('CreatorID');
-        $creatorName = $request->input('CreatorName');
-        $preparorId = $request->input('PreparorID');
-        $preparorName = $request->input('PreparorName');
-        $storeCode = $request->input('StoreCode');
+    // Check if the JSON data is valid
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return response()->json([
+            'message' => 'Invalid JSON data provided',
+        ], 400);
+    }
 
-        // Create a new Remark model instance with the additional parameters
-        $remark = new RemarkSA([
-            'CreatorID' => $creatorId,
-            'CreatorName' => $creatorName,
-            'PreparorID' => $preparorId,
-            'PreparorName' => $preparorName,
-            'StoreCode' => $storeCode,
-            'remark_data' => json_encode($dataArray), // Store RemarksData separately
-        ]);
+    // Additional parameters from the request body
+    $creatorId = $request->input('CreatorID');
+    $creatorName = $request->input('CreatorName');
+    $preparorId = $request->input('PreparorID');
+    $preparorName = $request->input('PreparorName');
+    $storeCode = $request->input('StoreCode');
 
+    // Create a new Remark model instance with the additional parameters
+    $remark = new RemarkSA([
+        'CreatorID' => $creatorId,
+        'CreatorName' => $creatorName,
+        'PreparorID' => $preparorId,
+        'PreparorName' => $preparorName,
+        'StoreCode' => $storeCode,
+        'remark_data' => json_encode($dataArray), // Store RemarksData separately
+    ]);
+
+    // Save the data to the database
+    try {
         // Save the data to the database
         $remark->save();
 
@@ -44,7 +53,13 @@ class ChecklistController extends Controller
             'message' => 'Remarks stored successfully',
             'data' => $remark,
         ], 201);
+    } catch (\Exception $e) {
+        // Return a response with a 500 status code and an error message
+        return response()->json([
+            'message' => 'Failed to store remarks: ' . $e->getMessage(),
+        ], 500);
     }
+}
 
     public function getRemarkSAById($id)
 {
