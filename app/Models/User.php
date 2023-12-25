@@ -28,7 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_login_at',
         'business_unit',
         'role',
-        'Last_login'
+        'Last_login',
+        'Checklist_permission'
     ];
 
     /**

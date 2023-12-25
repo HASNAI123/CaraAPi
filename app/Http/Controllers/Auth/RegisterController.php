@@ -108,6 +108,11 @@ class RegisterController extends Controller
             'role' => $request->input('roles'),
         ];
 
+        // Check if Checklist_permission is provided in the request
+        if ($request->has('Checklist_permission')) {
+            $updateData['Checklist_permission'] = $request->input('Checklist_permission');
+        }
+
         // Check if password is provided in the request
         if ($request->has('password')) {
             // Hash and update the password if provided
@@ -125,7 +130,4 @@ class RegisterController extends Controller
             'data' => $data
         ], 201);
     }
-
-
-
 }
