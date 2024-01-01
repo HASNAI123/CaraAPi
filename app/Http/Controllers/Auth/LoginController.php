@@ -59,14 +59,11 @@ class LoginController extends Controller
             // Update last_login timestamp
             $user->update(['Last_login' => now()]);
 
+            $user->refresh();
+
             return response()->json([
-                'id' => $id,
-                'user_id' => $userId,
-                'name' => $name,
-                'role' => $role,
+                'user' => $user,
                 'access_token' => $token,
-                'business_unit' => $business_unit,
-                'Last_login' => $user->last_login // Use the updated value
             ], 200);
         }}
 
