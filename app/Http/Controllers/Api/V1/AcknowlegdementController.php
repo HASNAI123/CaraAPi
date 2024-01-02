@@ -21,8 +21,8 @@ class AcknowlegdementController extends Controller
             'User_id' => 'required',
             'user_name' => 'required',
             'Terms_1' => 'required',
-            'Terms_2' => 'required',
-            'Date_Downloaded' => 'required|date',
+            'Terms_2' => 'nullable',
+            'Date_Downloaded' => 'date',
             'Type' => 'nullable'
         ]);
 
