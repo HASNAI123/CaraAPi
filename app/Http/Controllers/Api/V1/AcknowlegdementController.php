@@ -31,7 +31,7 @@ class AcknowlegdementController extends Controller
             'user_name' => $request->input('user_name'),
             'Terms_1' => $request->input('Terms_1'),
             'Terms_2' => $request->input('Terms_2'),
-            'Date_Downloaded' => $request->input('Date_Downloaded'),
+            'Date_Downloaded' => $request->input('Date_Downloaded') ?? now(),
             'Type' => $request->input('Type')
         ]);
 
