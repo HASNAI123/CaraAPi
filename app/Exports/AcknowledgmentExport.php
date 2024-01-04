@@ -22,6 +22,10 @@ class AcknowledgmentExport implements FromQuery, WithHeadings
             'Terms 1',
             'Terms 2',
             'Date Downloaded',
+            'updated_at',
+            'created_at',
+            'SOP Type',
+            'user_id'
         ];
     }
 }
