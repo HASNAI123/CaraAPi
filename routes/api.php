@@ -26,10 +26,16 @@ Route::put('user_update', 'App\Http\Controllers\Auth\RegisterController@user_upd
 Route::get('/users/{user_id}', 'App\Http\Controllers\Api\V1\UsersController@getUserByUserId');
 
 
-//Acknowldegemnt Api
+//Sop ArchiveAcknowldegemnt Api
 
-Route::get('/Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@All_reports');
-Route::post('/Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@store');
+Route::get('/Archive_Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@archive_All_reports');
+Route::post('/Archive_Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@archive_store');
+
+
+//SOP library Acknowldegemnt Api
+
+Route::get('/library_Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@library_All_reports');
+Route::post('/library_Acknowledgement_reports', 'App\Http\Controllers\Api\V1\AcknowlegdementController@library_store');
 
 
 

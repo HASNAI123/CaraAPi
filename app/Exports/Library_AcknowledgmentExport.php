@@ -2,15 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Acknowledgment;
+use App\Models\AcknowledgmentLibrary;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class AcknowledgmentExport implements FromQuery, WithHeadings
+
+class Library_AcknowledgmentExport implements FromQuery, WithHeadings
 {
     public function query()
     {
-        return Acknowledgment::query();
+        return AcknowledgmentLibrary::query();
     }
 
     public function headings(): array

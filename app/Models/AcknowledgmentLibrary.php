@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Acknowledgment extends Model
+class AcknowledgmentLibrary extends Model
 {
     use HasFactory;
-    protected $table = 'Acknowledgement';
+    protected $table = 'AcknowledgmentLibrary';
 
     protected $fillable = [
         'User_id',
