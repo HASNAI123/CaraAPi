@@ -16,7 +16,8 @@ class AcknowledgmentArchive extends Model
         'Terms_1',
         'Terms_2',
         'Date_Downloaded',
-        'Type'
+        'Type',
+        'Sop_title'
     ];
 
 

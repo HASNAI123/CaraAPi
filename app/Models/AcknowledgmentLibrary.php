@@ -13,6 +13,7 @@ class AcknowledgmentLibrary extends Model
     protected $fillable = [
         'User_id',
         'user_name',
+        'Sop_title',
         'Terms_1',
         'Terms_2',
         'Date_Downloaded',

@@ -26,7 +26,8 @@ class Library_AcknowledgmentExport implements FromQuery, WithHeadings
             'updated_at',
             'created_at',
             'SOP Type',
-            'user_id'
+            'user_id',
+            'Sop_title'
         ];
     }
 }

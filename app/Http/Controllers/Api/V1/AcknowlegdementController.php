@@ -21,6 +21,7 @@ class AcknowlegdementController extends Controller
     {
         $request->validate([
             'User_id' => 'required',
+            'Sop_title' => 'required',
             'user_name' => 'required',
             'Terms_1' => 'required',
             'Terms_2' => 'nullable',
@@ -28,16 +29,18 @@ class AcknowlegdementController extends Controller
             'Type' => 'nullable'
         ]);
 
-        AcknowledgmentArchive::create([
+        $acknowledgmentArchive = AcknowledgmentArchive::create([
             'User_id' => $request->input('User_id'),
             'user_name' => $request->input('user_name'),
+            'Sop_title' => $request->input('Sop_title'),
             'Terms_1' => $request->input('Terms_1'),
             'Terms_2' => $request->input('Terms_2'),
             'Date_Downloaded' => $request->input('Date_Downloaded') ?? now(),
             'Type' => $request->input('Type')
         ]);
 
-        return response()->json(['message' => 'Data saved successfully'], 201);
+        return response()->json(['message' => 'Data saved successfully', 'data' => $acknowledgmentArchive], 201);
+
     }
 
 
@@ -50,6 +53,7 @@ class AcknowlegdementController extends Controller
     {
         $request->validate([
             'User_id' => 'required',
+            'Sop_title' => 'required',
             'user_name' => 'required',
             'Terms_1' => 'required',
             'Terms_2' => 'nullable',
@@ -60,6 +64,7 @@ class AcknowlegdementController extends Controller
         AcknowledgmentLibrary::create([
             'User_id' => $request->input('User_id'),
             'user_name' => $request->input('user_name'),
+            'Sop_title' => $request->input('Sop_title'),
             'Terms_1' => $request->input('Terms_1'),
             'Terms_2' => $request->input('Terms_2'),
             'Date_Downloaded' => $request->input('Date_Downloaded') ?? now(),
