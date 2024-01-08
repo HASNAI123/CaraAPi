@@ -16,7 +16,7 @@ class Archive_AcknowledgmentExport implements FromQuery, WithHeadings
     public function headings(): array
     {
         return [
-            'User ID',
+            'No.',
             'User Name',
             'role',
             'Terms 1',
@@ -25,7 +25,7 @@ class Archive_AcknowledgmentExport implements FromQuery, WithHeadings
             'updated_at',
             'created_at',
             'SOP Type',
-            'user_id',
+            'User_id',
             'Sop_title'
         ];
     }
