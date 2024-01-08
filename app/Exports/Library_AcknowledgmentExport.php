@@ -11,23 +11,21 @@ class Library_AcknowledgmentExport implements FromQuery, WithHeadings
 {
     public function query()
     {
-        return AcknowledgmentLibrary::query();
+        return AcknowledgmentLibrary::query()->select('Sop_title',  'user_name', 'User_id', 'Terms_1', 'Terms_2', 'Date_Downloaded', 'Type');
     }
 
     public function headings(): array
     {
         return [
-            'No.',
-            'User Name',
-            'role',
+            'Sop_title',
+            'Employee Name',
+            'Employee id',
             'Terms 1',
             'Terms 2',
             'Date Downloaded',
-            'updated_at',
-            'created_at',
             'SOP Type',
-            'User_id',
-            'Sop_title'
+            'created_at',
+            'updated_at',
         ];
     }
 }
