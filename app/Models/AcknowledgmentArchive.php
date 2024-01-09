@@ -9,6 +9,7 @@ class AcknowledgmentArchive extends Model
 {
     use HasFactory;
     protected $table = 'AcknowledgmentArchive';
+    public $timestamps = false;
 
     protected $fillable = [
         'User_id',

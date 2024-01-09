@@ -9,6 +9,7 @@ class AcknowledgmentLibrary extends Model
 {
     use HasFactory;
     protected $table = 'AcknowledgmentLibrary';
+    public $timestamps = false;
 
     protected $fillable = [
         'User_id',
