@@ -323,6 +323,8 @@ Route::post('/generatesops/upload', [App\Http\Controllers\Api\v1\GeneratesopCont
 //Sop upload api
 Route::prefix('v1')->group(function () {
     Route::post('sops', '\App\Http\Controllers\Api\V1\Sop_upload@store')->name('sops.store');
+    Route::delete('sops/{id}', '\App\Http\Controllers\Api\V1\Sop_upload@destroy')->name('sops.destroy');
+    Route::put('sops/{id}', '\App\Http\Controllers\Api\V1\Sop_upload@update')->name('sops.update');
 });
 
 

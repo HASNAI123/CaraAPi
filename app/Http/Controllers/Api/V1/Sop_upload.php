@@ -68,7 +68,7 @@ class Sop_upload extends Controller
     {
         $validator = Validator::make($request->all(), [
             'uploaded_by' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'date',
             'sop_title' => 'required|string',
             'business_unit' => 'required|string',
         ]);
