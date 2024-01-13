@@ -378,6 +378,7 @@ Route::post('/api/v1/roles/{role_id}/permissions', [\App\Http\Controllers\Api\v1
 //Uploaded Sop
 Route::get('sops', '\App\Http\Controllers\Api\V1\SopController@getSop');
 Route::delete('sops/{id}', 'App\Http\Controllers\Api\V1\SopController@deleteSop');
+Route::get('sops/{id}', '\App\Http\Controllers\Api\V1\Sop_upload@show')->name('sops.show');
 
 //Generated Sops
 Route::get('Generated_sops', '\App\Http\Controllers\Api\V1\SopController@getAllGeneratedSops');
