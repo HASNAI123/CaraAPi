@@ -123,7 +123,7 @@ Route::delete('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessContr
 
 Route::put('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateNUTRITIONISTyId');
 
-// Operations
+// Pharmacist
 
 
 Route::post('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@Pharmaciststore');
@@ -138,7 +138,7 @@ Route::put('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@u
 
 
 
-//Pharmacist
+//Operations
 
 
 Route::post('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@Operationsstore');
@@ -177,7 +177,7 @@ Route::get('/AeonMallAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonM
 
 Route::get('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonMallAuditById');
 
-Route::delete('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@ddeleteAeonMallAuditById');
+Route::delete('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonMallAuditById');
 
 Route::put('/AeonMallAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonMallAuditAById');
 
