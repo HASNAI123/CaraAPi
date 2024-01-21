@@ -191,7 +191,7 @@ Route::get('/AeonStoreAudit', 'App\Http\Controllers\Api\V1\SafetyController@Aeon
 
 Route::get('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonStoreAuditById');
 
-Route::delete('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonStoreAuditById');
+Route::delete('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteStoreMallAuditById');
 
 Route::put('/AeonStoreAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonStoreAuditAById');
 
@@ -204,7 +204,7 @@ Route::get('/AeonBigAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonBi
 
 Route::get('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonBigAuditById');
 
-Route::delete('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonBigAuditById');
+Route::delete('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteBigMallAuditById');
 
 Route::put('/AeonBigAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonBigAuditAById');
 
@@ -218,7 +218,7 @@ Route::get('/AeonFPCAudit', 'App\Http\Controllers\Api\V1\SafetyController@AeonFP
 
 Route::get('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@AeonFPCAuditById');
 
-Route::delete('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteAeonFPCAuditById');
+Route::delete('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@deleteFPCMallAuditById');
 
 Route::put('/AeonFPCAudit/{id}', 'App\Http\Controllers\Api\V1\SafetyController@updateAeonFPCAuditAById');
 
