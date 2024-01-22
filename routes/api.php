@@ -310,6 +310,16 @@ Route::get('latestGeneratedsops', 'App\Http\Controllers\Api\V1\SopController@get
 
 
 Route::get('/users', [\App\Http\Controllers\Api\V1\UsersController::class, 'index']);
+
+
+// Profile Photo Api's
+Route::post('/Profile_upload/{userId}', 'App\Http\Controllers\Api\V1\UsersController@uploadProfileImage');
+Route::get('/Profile_image/{userId}', 'App\Http\Controllers\Api\V1\UsersController@getProfileImage');
+
+
+
+
+//Generate SOP APi's
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
 
 

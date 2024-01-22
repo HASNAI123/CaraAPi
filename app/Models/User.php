@@ -29,7 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'business_unit',
         'role',
         'Last_login',
-        'Checklist_permission'
+        'Checklist_permission',
+        'Profile_Photo'
     ];
 
     /**

@@ -27,6 +27,44 @@ class UsersController extends Controller
         return response()->json($users);
     }
 
+    public function uploadProfileImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image',
+            'user_id' => 'required|string',
+        ]);
+
+        $imagePath = $request->file('image')->getRealPath();
+        $imageFile = file_get_contents($imagePath);
+        $base64Image = base64_encode($imageFile);
+
+        $user = User::where('user_id', $request->user_id)->first();
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->Profile_Photo = $base64Image;
+        $user->save();
+
+        return response()->json(['message' => 'Image uploaded successfully'], 200);
+    }
+
+    public function getProfileImage($userId)
+{
+    $user = User::where('user_id', $userId)->first();
+
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    $base64Image = $user->Profile_Photo;
+    if (!$base64Image) {
+        return response()->json(['error' => 'No profile image found'], 404);
+    }
+
+    return response()->json(['image' => $base64Image], 200);
+}
+
 
     /**
  * Register a new user.
