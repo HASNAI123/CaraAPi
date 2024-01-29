@@ -317,7 +317,10 @@ Route::post('/Profile_upload/{userId}', 'App\Http\Controllers\Api\V1\UsersContro
 Route::get('/Profile_image/{userId}', 'App\Http\Controllers\Api\V1\UsersController@getProfileImage');
 
 
+//Change Reqeust Api
 
+Route::post('/Changerequest','App\Http\Controllers\API\V1\ChangeRequestController@saveFormData');
+Route::get('/Changerequest','App\Http\Controllers\API\V1\ChangeRequestController@getAllChangeRequests');
 
 //Generate SOP APi's
 Route::get('sops', 'App\Http\Controllers\GeneratesopController@index');
