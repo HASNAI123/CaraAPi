@@ -420,7 +420,7 @@ public function getQM_QAA_Aeon_big_ById($id)
 public function updateQM_QAA_Aeon_bigById(Request $request, $id)
 {
 
-$remark = QQM_QAA_Aeon_big::find($id);
+$remark = QM_QAA_Aeon_big::find($id);
 
 if (!$remark) {
     return response()->json(['message' => 'Remark not found'], 404);
