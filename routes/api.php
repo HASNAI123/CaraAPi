@@ -143,13 +143,13 @@ Route::put('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@u
 
 Route::post('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@Operationsstore');
 
-Route::get('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@PharmacistAll');
+Route::get('/Operations', 'App\Http\Controllers\Api\V1\WellnessController@OperationsAll');
 
-Route::get('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getPharmacistById');
+Route::get('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getOperationsById');
 
-Route::delete('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deletePharmacistById');
+Route::delete('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteOperationsById');
 
-Route::put('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updatePharmacistbyId');
+Route::put('/Operations/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateOperationsbyId');
 
 
 //Loss Prevention
