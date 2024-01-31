@@ -123,18 +123,20 @@ Route::delete('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessContr
 
 Route::put('/Nutritionalist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateNUTRITIONISTyId');
 
+
+
 // Pharmacist
 
 
 Route::post('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@Pharmaciststore');
 
-Route::get('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@OperationsAll');
+Route::get('/Pharmacist', 'App\Http\Controllers\Api\V1\WellnessController@PharmacistAll');
 
-Route::get('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getOperationsById');
+Route::get('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@getPharmacistById');
 
-Route::delete('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deleteOperationsById');
+Route::delete('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@deletePharmacistById');
 
-Route::put('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updateOperationsbyId');
+Route::put('/Pharmacist/{id}', 'App\Http\Controllers\Api\V1\WellnessController@updatePharmacistbyId');
 
 
 
