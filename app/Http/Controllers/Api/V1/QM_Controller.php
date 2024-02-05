@@ -242,50 +242,54 @@ return response()->json(['message' => 'Remark deleted successfully'], 200);
 
  // QM_QAA_AEON
  public function QM_QAA_AEON_store(Request $request)
-{
-    // Increase the maximum execution time to 300 seconds
-    set_time_limit(300);
+ {
+     // Increase the maximum execution time to 300 seconds
+     set_time_limit(300);
 
-    try {
-        // Validate the request data if needed
-        $validatedData = $request->validate([
-            // Define validation rules here
-        ]);
+     try {
+         // Validate the request data if needed
+         $validatedData = $request->validate([
+             // Define validation rules here
+         ]);
 
-        // Retrieve the array of JSON objects from the request
-        $dataArray = json_decode($request->json()->get('RemarksData'), true);
+         // Retrieve the array of JSON objects from the request
+         $dataArray = json_decode($request->json()->get('RemarksData'), true);
 
-        // Additional parameters from the request body
-        $creatorId = $request->input('CreatorID');
-        $creatorName = $request->input('CreatorName');
-        $preparorId = $request->input('PreparorID');
-        $preparorName = $request->input('PreparorName');
-        $storeCode = $request->input('StoreCode');
+         // Additional parameters from the request body
+         $creatorId = $request->input('CreatorID');
+         $creatorName = $request->input('CreatorName');
+         $preparorId = $request->input('PreparorID');
+         $preparorName = $request->input('PreparorName');
+         $storeCode = $request->input('StoreCode');
 
-        // Create a new Remark model instance with the additional parameters
-        $remark = new QM_QAA_Aeon([
-            'CreatorID' => $creatorId,
-            'CreatorName' => $creatorName,
-            'PreparorID' => $preparorId,
-            'PreparorName' => $preparorName,
-            'StoreCode' => $storeCode,
-            'remark_data' => $dataArray, // Store RemarksData as an array
-        ]);
+         // Split the data array into chunks
+         $chunks = array_chunk($dataArray, 500); // Adjust the chunk size as needed
 
-        // Save the data to the database
-        $remark->save();
+         foreach ($chunks as $chunk) {
+             // Create a new Remark model instance with the additional parameters
+             $remark = new QM_QAA_Aeon([
+                 'CreatorID' => $creatorId,
+                 'CreatorName' => $creatorName,
+                 'PreparorID' => $preparorId,
+                 'PreparorName' => $preparorName,
+                 'StoreCode' => $storeCode,
+                 'remark_data' => $chunk, // Store each chunk of RemarksData as an array
+             ]);
 
-        return response()->json([
-            'message' => 'Remarks stored successfully',
-            'data' => $remark,
-        ], 201);
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => 'An error occurred while storing the remarks',
-            'message' => $e->getMessage(),
-        ], 500);
-    }
-}
+             // Save the data to the database
+             $remark->save();
+         }
+
+         return response()->json([
+             'message' => 'Remarks stored successfully',
+         ], 201);
+     } catch (\Exception $e) {
+         return response()->json([
+             'error' => 'An error occurred while storing the remarks',
+             'message' => $e->getMessage(),
+         ], 500);
+     }
+ }
 
  public function getQM_QAA_AEON_ById($id)
  {
