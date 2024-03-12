@@ -16,7 +16,7 @@ class Folder extends Model
 {
     use SoftDeletes ;
 
-    protected $fillable = ['title','password','created_by'];
+    protected $fillable = ['title','password','created_by','Division','Document_Category','priority'];
 
 
 

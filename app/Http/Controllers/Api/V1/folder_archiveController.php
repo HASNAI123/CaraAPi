@@ -58,10 +58,18 @@ class folder_archiveController extends Controller
         $password = $request->password;
         $created_by = $request->created_by;
 
+        // Additional optional parameters
+        $division = $request->input('Division', null); // Default value is null
+        $document_category = $request->input('Document_Category', null); // Default value is null
+        $priority = $request->input('priority', null); // Default value is null
+
         $folder = folder_archive::create([
             'title' => $title,
             'password' => $password,
             'created_by' => $created_by,
+            'Division' => $division,
+            'Document_Category' => $document_category,
+            'priority' => $priority,
         ]);
 
         return response()->json(['success' => true, 'folder' => $folder]);
