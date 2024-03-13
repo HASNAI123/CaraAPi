@@ -112,6 +112,9 @@ class folder_archiveController extends Controller
         $folder->update([
             'title' => $request->folder_title,
             'password' => $request->password,
+            'Division' => $division,
+            'Document_Category' => $document_category,
+            'priority' => $priority,
         ]);
 
         // Retrieve the updated folder again to include the updated data in the response

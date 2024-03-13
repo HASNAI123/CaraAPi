@@ -13,5 +13,7 @@ class Sop extends Model
         'date',
         'sop_title',
         'business_unit',
+        'Division',
+        'Document_Category'
     ];
 }

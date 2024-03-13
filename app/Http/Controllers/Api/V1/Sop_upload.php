@@ -23,6 +23,8 @@ class Sop_upload extends Controller
             'business_unit' => 'required|string',
             'sop_file' => 'string', // Allow a string (single file)
             'archive_folder' => 'required|integer', // Archive folder ID as an integer
+            'Division' =>'string',
+            'Document_Category' => 'string',
         ]);
 
         if ($validator->fails()) {
@@ -36,11 +38,17 @@ class Sop_upload extends Controller
         $sop->business_unit = $request->business_unit;
         $sop->archive_folder = $request->archive_folder; // Assign the archive_folder ID
 
+        // Assign the additional parameters
+        $sop->Division = $request->input('Division', null); // Default value is null
+        $sop->Document_Category = $request->input('Document_Category', null); // Default value is null
+
         // Handle the sop_file as a string (single file)
         if ($request->has('sop_file')) {
             $sop->sop_file = $request->input('sop_file');
-            $sop->save();
         }
+
+        // Save the data to the database
+        $sop->save();
 
         return response()->json(['message' => 'SOP uploaded successfully', 'sop' => $sop], 200);
     }
@@ -71,6 +79,8 @@ class Sop_upload extends Controller
             'date' => 'date',
             'sop_title' => 'required|string',
             'business_unit' => 'required|string',
+            'Division' =>'string',
+            'Document_Category' => 'string',
         ]);
 
         if ($validator->fails()) {
