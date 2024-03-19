@@ -25,6 +25,7 @@ class Sop_upload extends Controller
             'archive_folder' => 'required|integer', // Archive folder ID as an integer
             'Division' =>'string',
             'Document_Category' => 'string',
+            'Reviewed_Year' => 'integer'
         ]);
 
         if ($validator->fails()) {
@@ -41,7 +42,7 @@ class Sop_upload extends Controller
         // Assign the additional parameters
         $sop->Division = $request->input('Division', null); // Default value is null
         $sop->Document_Category = $request->input('Document_Category', null); // Default value is null
-
+        $sop->Reviewed_Year = $request->input('Reviewed_Year', null); // Default value is null
         // Handle the sop_file as a string (single file)
         if ($request->has('sop_file')) {
             $sop->sop_file = $request->input('sop_file');
@@ -81,6 +82,7 @@ class Sop_upload extends Controller
             'business_unit' => 'required|string',
             'Division' =>'string',
             'Document_Category' => 'string',
+            'Reviewed_Year' => 'integer'
         ]);
 
         if ($validator->fails()) {

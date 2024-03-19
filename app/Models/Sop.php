@@ -14,6 +14,7 @@ class Sop extends Model
         'sop_title',
         'business_unit',
         'Division',
-        'Document_Category'
+        'Document_Category',
+        'Reviewed_Year'
     ];
 }
