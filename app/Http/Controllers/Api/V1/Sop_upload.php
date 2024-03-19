@@ -25,7 +25,7 @@ class Sop_upload extends Controller
             'archive_folder' => 'required|integer', // Archive folder ID as an integer
             'Division' =>'string',
             'Document_Category' => 'string',
-            'Reviewed_Year' => 'sometimes|integer|string'
+            'Reviewed_Year' => ''
         ]);
 
         if ($validator->fails()) {
@@ -82,7 +82,7 @@ class Sop_upload extends Controller
             'business_unit' => 'required|string',
             'Division' =>'string',
             'Document_Category' => 'string',
-            'Reviewed_Year' => 'integer'
+            'Reviewed_Year' => ''
         ]);
 
         if ($validator->fails()) {
