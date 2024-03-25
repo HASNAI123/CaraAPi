@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function getUsersByRole($roleName)
     {
-        $users = User::where('role', $roleName)->get();
+        $users = User::where('roles', $roleName)->get();
         return response()->json($users);
     }
 
@@ -84,6 +84,7 @@ public function register(Request $request)
         'name' => $request->name,
         'email' => $request->user_id,
         'password' => bcrypt($request->password),
+        'roles' => $request->input('roles')
     ]);
 
     $token = $user->createToken('auth-token')->plainTextToken;

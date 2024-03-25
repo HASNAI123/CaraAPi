@@ -65,7 +65,6 @@ class RegisterController extends Controller
             'name' => 'required',
             'user_id' => 'required|unique:users,user_id',
             'password' => 'required',
-            'roles' => 'string'
         ]);
 
         if ($validator->fails()) {
@@ -105,7 +104,7 @@ class RegisterController extends Controller
             'name' => $request->input('name'),
             'user_id' => $request->input('user_id'),
             'business_unit' => $request->input('business_unit'),
-            'role' => $request->input('roles'),
+            'roles' => $request->input('roles'),
         ];
 
         // Check if Checklist_permission is provided in the request
